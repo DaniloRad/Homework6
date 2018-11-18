@@ -1,11 +1,14 @@
-incomeMjesecni();
+(function (){
+IncomePerMonth();
 ExspensesPerMonth();
 var StorageIncome = localStorage.getItem('income');
 var StorageExspenses = localStorage.getItem("exspenses");
 
 if (StorageIncome !== null) {
     document.getElementsByClassName("income-list")[0].innerHTML = "<h3>Income</h3>" + StorageIncome;
-} else if (StorageExspenses !== null) {
+} 
+if (StorageExspenses !== null) {
+    
     document.getElementsByClassName("exspenses-list")[0].innerHTML = "<h3>Exspenses</h3>" + StorageExspenses;
 
 }
@@ -43,13 +46,23 @@ function removeItem(e) {
 }
 
 function addInList(e) {
-    e.preventDefault();
 
+    
 
     var Operator = document.querySelector('input[name="same"]:checked');
-    console.log(Operator.value);
     var Description = document.getElementById("description");
+    if(Description.value.length===0) {
+        alert("Opis??!")
+    }
+    else
+    {
     var Value = document.getElementById("value_1");
+    if(Value.value.length===0) {
+        alert("Vrijednost ???")
+    }
+    else {
+
+   
     var ListP1 = document.createElement("p");
     var ListP2 = document.createElement("p");
     var ListP3 = document.createElement("p");
@@ -106,7 +119,8 @@ function addInList(e) {
     CheckStorage();
 }
 
-
+}
+}
 //ove funkcije se pozivaju kod add i remove kako bi se racunalo stalno
 
 
@@ -172,6 +186,7 @@ function Budget() {
 function CheckStorage() {
 
     var income = document.getElementsByClassName("income");
+    console.log(income);
 
     var TextForIncomeStorage = "";
     for (let i = 0; i < income.length; i++) {
@@ -181,7 +196,7 @@ function CheckStorage() {
     }
 
     var exspenses = document.getElementsByClassName("exspenses");
-
+console.log(exspenses)
     var TextForExspensesStorage = "";
     for (let i = 0; i < exspenses.length; i++) {
 
@@ -197,3 +212,4 @@ function CheckStorage() {
         alert("browser ne podrzava");
     }
 }
+}());
